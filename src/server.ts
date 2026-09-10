@@ -18,6 +18,9 @@ import timeRouter from "./routes/timetable.js";
 import examRouter from "./routes/exam.js";
 import dashboardRouter from "./routes/dashboard.js";
 import attendanceRoutes from "./routes/attendance.js";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./config/swagger.js";
+
 dotenv.config();
 
 const app: Application = express();
@@ -49,7 +52,7 @@ app.use("/api/exams", examRouter);
 app.use("/api/dashboard", dashboardRouter);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/inngest", serve({ client: inngest, functions: [generateTimeTable, generateExam,handleExamSubmission] }));
-
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use((err: Error, req: Request, res: Response, next: Function) => {
   console.error(err.stack);
