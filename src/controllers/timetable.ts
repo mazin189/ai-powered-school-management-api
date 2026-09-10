@@ -28,7 +28,7 @@ export const generateTimetable = async (
 
             res.status(200).json({message: "Timetable generation initiated"})
     } catch (error) {
-    res.status(500).json({ message: "Server Error", error });
+    res.status(500).json({ error: (error as any).message });
     }
 }
 
