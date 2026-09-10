@@ -17,6 +17,7 @@ import subjectRouter from "./routes/subject.js";
 import timeRouter from "./routes/timetable.js";
 import examRouter from "./routes/exam.js";
 import dashboardRouter from "./routes/dashboard.js";
+import attendanceRoutes from "./routes/attendance.js";
 dotenv.config();
 
 const app: Application = express();
@@ -46,6 +47,7 @@ app.use("/api/subjects", subjectRouter);
 app.use("/api/timetables", timeRouter);
 app.use("/api/exams", examRouter);
 app.use("/api/dashboard", dashboardRouter);
+app.use("/api/attendance", attendanceRoutes);
 app.use("/api/inngest", serve({ client: inngest, functions: [generateTimeTable, generateExam,handleExamSubmission] }));
 
 
